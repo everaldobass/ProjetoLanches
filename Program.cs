@@ -22,6 +22,15 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddTransient<ILancheRepository, LancheRepository>();
 builder.Services.AddTransient<ICategoriaRepository, CategoriaRepository>();
 
+// Aula 45 - Session e Carrinho de Compras
+builder.Services.AddMemoryCache();
+builder.Services.AddSession();
+
+
+// Aula 45 - Inejeção de dependência para acessar o contexto HTTP
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+
 
 //### Classe Program  Seql Server
 // String de Conexao com o banco de dados Sql Server
@@ -39,11 +48,6 @@ builder.Services.AddTransient<ICategoriaRepository, CategoriaRepository>();
 //options.UseMySql(connectionString, ServerVersion.Parse("8.0.40-mysql")));
 
 
-
-
-
-
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -54,12 +58,14 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-
-
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+// Aula 45 - Usando o session
+app.UseSession();
+
 
 app.UseAuthorization();
 

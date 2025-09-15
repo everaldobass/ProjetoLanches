@@ -14,12 +14,14 @@ namespace ProjetoLanches.Repositories
         private readonly ApplicationDbContext _context;
 
 
+
         // Construtor que recebe o contexto do banco de dados via injeção de dependência
         public LancheRepository(ApplicationDbContext contexto)
         {
             // Armazena o contexto recebido para uso nos métodos da classe
             _context = contexto;
         }
+
 
         // Propriedade que retorna todos os lanches cadastrados, incluindo suas categorias
         public IEnumerable<Lanche> Lanches =>

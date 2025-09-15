@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProjetoLanches.Context;
-using System.Security.Cryptography.X509Certificates;
-
 // Define um namespace para organizar o código relacionado 
 namespace ProjetoLanches.Models
 {
+
+
     //Classe quem implementa um Carrinho de Compra
     public class CarrinhoCompra
     {
@@ -19,12 +19,16 @@ namespace ProjetoLanches.Models
             _context = context;
         }
 
+
+
         // Propriedade que armazena o ID único do carrinho de compras
         public string CarrinhoCompraId { get; set; }
 
 
         // Lista de itens que pertencem ao carrinho de compras
         public List<CarrinhoCompraItem> CarrinhoCompraItems { get; set; }
+
+
 
         // Método estático que obtém ou cria um carrinho de compras vinculado à sessão do usuário
         public static CarrinhoCompra GetCarrinho(IServiceProvider services)
@@ -51,6 +55,8 @@ namespace ProjetoLanches.Models
 
 
         }
+
+
 
 
 
@@ -87,6 +93,9 @@ namespace ProjetoLanches.Models
             // Salva as alterações no banco de dados
             _context.SaveChanges();
         }
+
+
+
 
 
 
@@ -161,6 +170,9 @@ namespace ProjetoLanches.Models
             // Salva as alterações no banco de dados
             _context.SaveChanges();
         }
+
+
+
 
 
         // Método para calcular o valor total dos itens no carrinho de compras

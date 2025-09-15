@@ -6,6 +6,7 @@ namespace ProjetoLanches.Controllers
 {
     public class LancheController : Controller
     {
+
         private readonly ILancheRepository _lancheRepository;
 
         public LancheController(ILancheRepository lancheRepository)

@@ -1,11 +1,11 @@
 using FluentAssertions.Common;
 using Microsoft.EntityFrameworkCore;
 using ProjetoLanches.Context;
+using ProjetoLanches.Models;
 using ProjetoLanches.Repositories;
 using ProjetoLanches.Repositories.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
-
 
 
 // Add services to the container.
@@ -22,13 +22,21 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddTransient<ILancheRepository, LancheRepository>();
 builder.Services.AddTransient<ICategoriaRepository, CategoriaRepository>();
 
+
+// Aula 45 - Inejeção de dependência para acessar o contexto HTTP - Enquanto o usuário navega no site
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+// Aula 50
+builder.Services.AddScoped(sp => CarrinhoCompra.GetCarrinho(sp));
+
+
+
 // Aula 45 - Session e Carrinho de Compras
 builder.Services.AddMemoryCache();
 builder.Services.AddSession();
 
 
-// Aula 45 - Inejeção de dependência para acessar o contexto HTTP
-builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
 
 
 
@@ -63,7 +71,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-// Aula 45 - Usando o session
+// Aula 45 - Utilizando o session
 app.UseSession();
 
 

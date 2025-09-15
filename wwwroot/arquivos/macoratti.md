@@ -3,19 +3,6 @@
 - dotnet new mvc -au Individual -o autenticacao
 - ASP .NET Core MVC
 
-### Modelo MVC ASP.NET
-### Models
-- ?? 1. Model (Modelo)
-- Representa os dados e a logica de negocio.
-
-### View
-- ?? 2. View (Visao)
-- Interface com o usuario.
-
-### Controler
-- ?? 3. Controller (Controlador)
-- Faz a ponte entre o Model e a View.
-- Recebe as requisiçoes do usuário, processa os dados com o Model e retorna a View apropriada.
 
 ### Bibliotecas Utilizadas no projeto
 https://www.nuget.org/
@@ -38,19 +25,6 @@ https://www.connectionstrings.com/
 - Pomelo.EntityFrameworkCore.MySql
 
 
-### Montando a String de Conexao com SQL Server / Sqlite3 / Mysql
-```
- "ConnectionStrings": {
-
-    "DefaultConnectionSqlite": "Filename=./dados.db",
-
-    "DefaultConnectionMysql": "server=localhost:3306; initial database=dbMacoratti; uid=admin; pwd=123",
-
-    "DefaultConnectionSqlServer": "Server=DESKTOP-R2E5LVV\\SQLEXPRESS; Database=dbautenticacao; trusted_connection=true; trustservercertificate=true"
-
-  },
-
-```
 ### Classe Program  Seql Server
 ```
 // String de Conexao com o banco de dados Sql Server
@@ -78,13 +52,61 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
     options.UseMySql(connectionString, ServerVersion.Parse("8.0.40-mysql")));
 
 ``` 
+### Seção 2:
+### Aula 09 - Apresentação do site de Venda de Lanches
+### Aula 10 - Ambiente e Ferramentas usadas no curso
+
+### Aula 11 - Criação do projeto ASP .NET Core MVC
+- ASP Net Core - MVC
+### Aula 12 - Apresentando a estrutura do projeto
+
+### Aula 13 - Apresentando o padrão MVC - Model View Controller
+1 - Models
+- ?? 1. Model (Modelo)
+- Representa os dados e a logica de negocio.
+
+2 - View
+- ?? 2. View (Visao)
+- Interface com o usuario.
+
+3 - Controler
+- ?? 3. Controller (Controlador)
+- Faz a ponte entre o Model e a View.
+- Recebe as requisiçoes do usuário, processa os dados com o Model e retorna a View apropriada.
+
+### Aula 14 - Funcionamento do projeto ASP .NET Core MVC
+### Aula 15 - Criando o Carousel no site para venda de Lanches
+```
+<div id="carouselLanches" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="10000">
+            <img src="~/images/carousel11.jpg" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item" data-bs-interval="2000">
+            <img src="~/images/carousel12.jpg" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="~/images/carousel13.jpg" class="d-block w-100" alt="...">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="carouselLanches" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="carouselLanches" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+```
+### Aula 16 - Considerações sobre a arquitetura do projeto
+
+
+
 ## Seção 3: Modelo de Dominio - Ententy Framework Core
+### Aula 17 - Criando o modelo de dominio
 ### Model Categorias
 ```
-
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
 namespace ProjetoLanches.Models
 {
     [Table("Categorias")]
@@ -111,10 +133,6 @@ namespace ProjetoLanches.Models
 ### Modelo de Dominio
 ### Model Lanches
 ```
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
 namespace ProjetoLanches.Models
 {
     [Table("Lanches")]
@@ -168,8 +186,217 @@ namespace ProjetoLanches.Models
 
 ```
 
+### Aula 18 - Apresentando o entity framework
+### Aula 19 - Configurando o EF Core
 
-### 
+### Aula 20 - Montando a string de conexão
+### Montando a String de Conexao com SQL Server / Sqlite3 / Mysql
+```
+ "ConnectionStrings": {
+
+    "DefaultConnectionSqlite": "Filename=./dados.db",
+
+    "DefaultConnectionMysql": "server=localhost:3306; initial database=dbMacoratti; uid=admin; pwd=123",
+
+    "DefaultConnectionSqlServer": "Server=DESKTOP-R2E5LVV\\SQLEXPRESS; Database=dbautenticacao; trusted_connection=true; trustservercertificate=true"
+
+  },
+
+```
+### Aula 21 - Ententy Framework Core 7 e a String de conexão
+- Apenas atualizando a String de conexao para o SQL Server
+```
+ "ConnectionStrings": {
+    "DefaultConnectionSqlServer": "Server=DESKTOP-R2E5LVV\\SQLEXPRESS; Database=dbautenticacao; trusted_connection=true; trustservercertificate=true"
+  },
+
+```
+
+
+### Aula 22 - Apresentando o Data Anotations
+### Aula 23 - Apresentando o Migrations do EF Core
+
+
+### Adicionando Migrations no Visual Studio 2022
+- Add-migration Inicial
+- Update-migration
+- remove-migration
+
+### Aula 24 - Aplicando os atributos Data Anotations
+
+### Aula 25 - Aplicando o Migrations no projeto
+### Verificar se está instalado
+- dotnet ef
+### Instala Global
+- dotnet tool install --global dotnet-ef
+
+### Update e Atualiza
+- dotnet ef database update
+
+### Aula 26 - Como popular as tabelas usando migrations
+
+### Aula 27 - Populando a tabela categoria com dados iniciais
+- add-migration PopularCategorias
+- update-database
+
+### Aula 28 - Populando a tabela lanches com dados iniciais
+- add-migration PopularLanhces
+- update-database
+
+### Aula 29 - Apresentando o padrão Repository
+- Desacopla a sua aplicação da lógica de acesso a dados
+- Centraliza a lógica de acesso a dados
+- Facilita a realização de testes
+- Facilita a manutenção do código
+- Minimiza a duplicação de código nas consultas e comandos
+
+### Aula 30 - Implementand o padrão Repository para Categoria
+### ICategoriaRepository - Interface
+```
+using ProjetoLanches.Models;
+
+// Define um namespace para organizar o código relacionado a repositórios e interfaces
+namespace ProjetoLanches.Repositories.Interfaces
+{
+    // Interface que representa o contrato para o repositório de categorias
+    public interface ICategoriaRepository
+    {
+        // Propriedade que retorna uma coleção de objetos do tipo Categoria
+        // O uso de IEnumerable permite iteração eficiente e flexível sobre os dados
+        IEnumerable<Categoria> Categorias { get; }
+    }
+}
+
+```
+### CategoriaRepository 
+```
+// Define o namespace onde a classe está localizada, ajudando na organização do projeto
+namespace ProjetoLanches.Repositories
+{
+    // Classe que implementa a interface ICategoriaRepository
+    // Responsável por acessar os dados da tabela de categorias no banco
+    public class CategoriaRepository : ICategoriaRepository
+    {
+        // Campo privado e somente leitura que representa o contexto do banco de dados
+        private readonly ApplicationDbContext _context;
+
+        // Construtor que recebe o contexto do banco de dados via injeção de dependência
+        public CategoriaRepository(ApplicationDbContext context)
+        {
+            // Armazena o contexto recebido para uso nos métodos da classe
+            _context = context;
+        }
+
+        // Propriedade que retorna todas as categorias do banco de dados
+        // Utiliza o Entity Framework para acessar a tabela Categorias
+        public IEnumerable<Categoria> Categorias => _context.Categorias;
+    }
+}
+
+```
+### Aula 31 - Implementando o padrão Repository para Lanches
+### Interface
+```
+// Define o namespace onde a interface está localizada, organizando o código por funcionalidade
+namespace ProjetoLanches.Repositories.Interfaces
+{
+    // Interface que define o contrato para o repositório de lanches
+    public interface ILancheRepository
+    {
+        // Propriedade que retorna todos os lanches disponíveis no sistema
+        IEnumerable<Lanche> Lanches { get; } // Retorna uma lista de lanches
+
+        // Propriedade que retorna apenas os lanches marcados como preferidos
+        IEnumerable<Lanche> LanchesPreferidos { get; } // Retorna uma lista de lanches preferidos
+
+        // Método que busca um lanche específico pelo seu ID
+        Lanche GetLancheById(int id); // Acessa um lanche específico
+    }
+}
+
+```
+### Classe Lanche
+```
+// Define o namespace onde a classe está localizada, organizando o código por funcionalidade
+namespace ProjetoLanches.Repositories
+{
+    // Classe que implementa a interface ILancheRepository
+    // Responsável por acessar os dados da tabela de lanches no banco
+    public class LancheRepository : ILancheRepository
+    {
+        // Campo privado e somente leitura que representa o contexto do banco de dados
+        private readonly ApplicationDbContext _context;
+
+
+        // Construtor que recebe o contexto do banco de dados via injeção de dependência
+        public LancheRepository(ApplicationDbContext contexto)
+        {
+            // Armazena o contexto recebido para uso nos métodos da classe
+            _context = contexto;
+        }
+
+
+        // Propriedade que retorna todos os lanches cadastrados, incluindo suas categorias
+        public IEnumerable<Lanche> Lanches =>
+            _context.Lanches.Include(c => c.Categoria); // Usa Include para carregar os dados da categoria junto com o lanche
+
+        // Propriedade que retorna apenas os lanches marcados como preferidos, incluindo suas categorias
+        public IEnumerable<Lanche> LanchesPreferidos =>
+            _context.Lanches
+                .Where(l => l.IsLanchePreferido) // Filtra os lanches preferidos
+                .Include(c => c.Categoria);      // Inclui os dados da categoria
+
+        // Método que retorna um lanche específico com base no seu ID
+        public Lanche GetLancheById(int LancheId)
+        {
+            // Busca o primeiro lanche que tenha o ID informado, ou retorna null se não encontrar
+            return _context.Lanches.FirstOrDefault(l => l.LancheId == LancheId);
+        }
+    }
+}
+
+
+```
+### Aula 32 - Registrando o serviço dos repositórios : Injeção de Dependência
+```
+builder.Services.AddTransient<ILancheRepository, LancheRepository>();
+builder.Services.AddTransient<ICategoriaRepository, CategoriaRepository>()
+```
+
+### Aula 33 - Criando o Controller a View para exibir os lanches
+```
+namespace ProjetoLanches.Controllers
+{
+    public class LancheController : Controller
+    {
+
+        private readonly ILancheRepository _lancheRepository;
+
+        public LancheController(ILancheRepository lancheRepository)
+        {
+            _lancheRepository = lancheRepository;
+        }
+
+        // Método construtor
+
+        public IActionResult List()
+        {
+
+            var lancheslistViewModel = new LancheListViewModel();
+            {
+                lancheslistViewModel.Lanches = _lancheRepository.Lanches;
+                lancheslistViewModel.CategoriaAtual = "Categoria Atual";
+            }
+
+            return View(lancheslistViewModel);
+        
+
+        }
+    }
+}
+
+```
+
 ### Cria uma Tabela Categorias e Lanches no Banco de dados
 ```
 using Microsoft.EntityFrameworkCore;
@@ -187,43 +414,11 @@ namespace ProjetoLanches.Context
 
         public DbSet<Categoria> Categoria { get; set; }
         public DbSet<Lanche> Lanche { get; set; }
-
-
     }
 }
 
 
 ```
-### Aula 25 - Aplicando o Migrations no projeto
-### Verificar se est� instalado
-- dotnet ef
-
-### Instala Global
-- dotnet tool install --global dotnet-ef
-
-### Update e Atualiza
-- dotnet ef database update
-
-### Adicionando Migrations no Visual Studio 2022
-- Add-migration Inicial
-- Update-migration
-- remove-migration
-
-### Adicionar daddos na tabela Categorias
-- add-migration PopularCategorias
-- update-database
-
-### Adicionar daddos na tabela Categorias
-- add-migration PopularLanhces
-- update-database
-
-### Aula 29 - Apresentando o padrão Repository
-- Desacopla a sua aplicação da lógica de acesso a dados
-- Centraliza a lógica de acesso a dados
-- Facilita a realização de testes
-- Facilita a manutenção do código
-- Minimiza a duplicação de código nas consultas e comandos
-
 ### Aula 30 - Implementando o padrão de Repository para Categoria
 - Repositories
 - Interfaces
@@ -282,49 +477,78 @@ public class LancheController : Controller
    </div>
 }
 ```
+
 ### Aula 35 - Conceitos : ViewData, ViewBag e TempData
 - ViewData-> Os dados viajam do controlador para a view através de um dicionário ViewDataDictionary. Este ViewDataDictionary é uma classe dicionário que é chamada ViewData.
 - viewBag -> é apenas um invólucro dinâmico em torno de ViewData, sendo uma propriedade dinâmica baseada no recurso dynamic da plataforma .NET.
 - TempData ->  ajuda na manutenção de dados quando você se move de um controlador para outro controlador. Para manter os dados ele utiliza uma variável de sessão (internamente).
 
-### Aula 36
-- Conceitos :
+
+### Aula 36 - Conceitos :
 -  _ViewStart : Executar código comum antes que qualquer view ou página Razor seja renderizada
 -  _ViewImports: Importar diretivas e declarações de forma global para todas as suas páginas de visualização.
 
-### Aula 37
-- Bootstrap : Ajustando o código para exibir os lanches
+### Aula 37 - Bootstrap : Ajustando o código para exibir os lanches
 
-### Aula 38
-- Apresentando o conceito de ViewModel
+### Aula 38 - Apresentando o conceito de ViewModel
 - contém a logica de interface do usuário
 
-### Aula 39
-- Implementando a view model LancheListViewModel
+### Aula 39 - Implementando a view model LancheListViewModel
+```
+namespace ProjetoLanches.ViewModels
+{
+    public class LancheListViewModel
+    {
+        // Definindo as propriedades do ViewModel
+        public IEnumerable<Lanche> Lanches { get; set; }
+        public string CategoriaAtual { get; set; }
+    }
 
-### Aula 40
-- Apresentando Partial Views
+}
+```
+### Ajustando o _ViewImports.cshtml
+```
+@using ProjetoLanches
+@using ProjetoLanches.Models
+@using ProjetoLanches.ViewModels
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+```
+### Aula 40 - Apresentando Partial Views
 - Definindo uma partial view: _partial
 
-### Aula 41
--  Criando a partial view _LanchesResumo
+### Aula 41 -  Criando a partial view _LanchesResumo.cshtml
 
-### Aula 42
--  Criando os itens do Carrinho de Compras : Conceitos
+### Diretório Share -> _LanchesResumo.cshtml
+```
+@model Lanche
 
-### Aula 43
-- Implementando os itens do carrinho de compras
+<div class="col-sm-4 col-md-4 col-lg-4">
+      <h4>@Model.Nome</h4>
+
+       <p class="img-fluid"><img src="@Model.ImagemUrl"></p>
+
+       <h3> Preço: @Model.Preco.ToString("c")</h3>
+       <h4> @Model.Nome</h4>
+       <p>@Model.DescricaoCurta</p>
+</div>
+```
+### Aula 42 -  Criando os itens do Carrinho de Compras : Conceitos
+
+### Aula 43 - Implementando os itens do carrinho de compras
 - add-migration CarrinhoCompraItem
 - update-database
 
-### Aula 44
--  Apresentando o conceito de Session
+### Aula 44 -  Apresentando o conceito de Session
+- O Session no ASP.NET é uma forma de armazenar dados temporários para um usuário específico enquanto ele navega pelo site. 
 
-### Aula 45
-- Configurando Session e HttpContext
+### Aula 45 - Configurando Session e HttpContext
+```
+builder.Services.AddMemoryCache();
+builder.Services.AddSession();
+```
 
-### Aula 46
-- Criando o carrinho de Compras
+### Aula 46 - Criando o carrinho de Compras
 ```
 // Define um namespace para organizar o código relacionado 
 namespace ProjetoLanches.Models
@@ -372,9 +596,9 @@ namespace ProjetoLanches.Models
             {
                 CarrinhoCompraId = carrinhoId
             };
-
-
-        }
+        } 
+    }
+}           
 
 ```
 
@@ -455,8 +679,7 @@ public void AdicionarAoCarrinho(Lanche lanche)
  }
 
 ```
-### Aula 49
-- Concluindo o Carrinho de Compras
+### Aula 49 - Concluindo o Carrinho de Compras
 ```
   // Método que retorna uma lista dos itens do carrinho de compras
   public List<CarrinhoCompraItem> GetCarrinhoCompraItens()
@@ -472,6 +695,7 @@ public void AdicionarAoCarrinho(Lanche lanche)
   }
 
 ```
+### Limpar todos os itens do carrinho
 ```
  // Método que remove todos os itens do carrinho de compras
   public void LimparCarrinho()
@@ -488,11 +712,14 @@ public void AdicionarAoCarrinho(Lanche lanche)
   }
 
 ```
+
+### Calcular o Valor Total do carrinho
 ```
      // Método para calcular o valor total dos itens no carrinho de compras
      public decimal GetCarrinhoCompraTotal()
      {
          // Busca todos os itens do carrinho que possuem o mesmo CarrinhoCompraId
+
          var valorToral = _context.CarrinhoCompraItens
              .Where(valortotal => valortotal.CarrinhoCompraId == CarrinhoCompraId) // Filtra os itens do carrinho atual
              .Select(valortotal => valortotal.Lanche.Preco * valortotal.Quantidade) // Multiplica o preço do lanche pela quantidade
@@ -503,11 +730,130 @@ public void AdicionarAoCarrinho(Lanche lanche)
      }
 
 ```
+
 ### Aula 50
 - Criando o Controlador para gerenciar os itens do carrinho de compras
+- CarrinhoCompraController
+```
+// Aula 50  - Define o namespace do projeto, agrupando as classes relacionadas
+namespace ProjetoLanches.Controllers
+{
 
-### Aula 51
+    // Define a classe do controller responsável pelo carrinho de compras
+    public class CarrinhoCompraController : Controller
+    {
+
+        // Declara uma variável para acessar os dados dos lanches
+        private readonly ILancheRepository _lancheRepository;
+        // Declara uma variável para manipular o carrinho de compras
+        private readonly CarrinhoCompra _carrinhoCompra;
+
+
+        // Construtor da classe, que recebe as dependências via injeção de dependência
+        public CarrinhoCompraController(ILancheRepository lancheRepository, CarrinhoCompra carrinhoCompra)
+        {
+            // Atribui o repositório de lanches à variável privada
+            _lancheRepository = lancheRepository;
+
+            // Atribui o carrinho de compras à variável privada
+            _carrinhoCompra = carrinhoCompra;
+        }
+
+
+        // Método que retorna a view principal do carrinho de compras
+        public IActionResult Index()
+        {
+            // Retorna a view associada à ação Index
+            return View();
+        }
+    }
+}
+
+```
+
+### Aula 51 -  Criando o Controlador para gerenciar os itens do carrinho de compras - II
+```
+// Aula 50  - Define o namespace do projeto, agrupando as classes relacionadas
+namespace ProjetoLanches.Controllers
+{
+
+    // Define a classe do controller responsável pelo carrinho de compras
+    public class CarrinhoCompraController : Controller
+    {
+
+        // Declara uma variável para acessar os dados dos lanches
+        private readonly ILancheRepository _lancheRepository;
+        // Declara uma variável para manipular o carrinho de compras
+        private readonly CarrinhoCompra _carrinhoCompra;
+
+
+        // Construtor da classe, que recebe as dependências via injeção de dependência
+        public CarrinhoCompraController(ILancheRepository lancheRepository, CarrinhoCompra carrinhoCompra)
+        {
+            // Atribui o repositório de lanches à variável privada
+            _lancheRepository = lancheRepository;
+
+            // Atribui o carrinho de compras à variável privada
+            _carrinhoCompra = carrinhoCompra;
+        }
+
+
+        // Método que retorna a view principal do carrinho de compras
+        public IActionResult Index()
+        {
+            // Obtém os itens atualmente no carrinho de compras
+            var itens = _carrinhoCompra.GetCarrinhoCompraItens();
+            // Atribui os itens obtidos à propriedade do carrinho de compras
+            _carrinhoCompra.CarrinhoCompraItems = itens;
+
+            var carrinhoCompraViewModel = new ViewModels.CarrinhoCompraViewModel
+            {
+                CarrinhoCompra = _carrinhoCompra,
+                CarrinhoCompraTotal = _carrinhoCompra.GetCarrinhoCompraTotal()
+            };
+            // Retorna a view associada à ação Index
+            return View(carrinhoCompraViewModel);
+        }
+
+        // Método que adiciona um lanche ao carrinho de compras
+        public RedirectToActionResult AdicionarItemNoCarrinhoCompra(int lancheId)
+        {
+            // Busca o lanche pelo ID fornecido
+            var lancheSelecionado = _lancheRepository.Lanches.FirstOrDefault(p => p.LancheId == lancheId);
+            // Se o lanche for encontrado, adiciona-o ao carrinho de compras
+            if (lancheSelecionado != null)
+            {
+                _carrinhoCompra.AdicionarAoCarrinho(lancheSelecionado);
+            }
+            // Redireciona para a ação Index do controller atual
+            return RedirectToAction("Index");
+
+        }
+
+        // Método que Remover um lanche ao carrinho de compras
+        public RedirectToActionResult AdicionarItemNoCarrinhoCompra(int lancheId)
+        {
+            // Busca o lanche pelo ID fornecido
+            var lancheSelecionado = _lancheRepository.Lanches.FirstOrDefault(p => p.LancheId == lancheId);
+            // Se o lanche for encontrado, adiciona-o ao carrinho de compras
+            if (lancheSelecionado != null)
+            {
+                _carrinhoCompra.RemoverDoCarrinho(lancheSelecionado);
+            }
+            // Redireciona para a ação Index do controller atual
+            return RedirectToAction("Index");
+
+        }
+
+    }
+}
+
+```
+
 ### Aula 52
+```
+
+```
 ### Aula 53
 ### Aula 54
 ### Aula 55

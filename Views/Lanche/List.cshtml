@@ -1,21 +1,70 @@
 ﻿@model LancheListViewModel
 
-<div>
-    <h2>@Model.CategoriaAtual</h2>
+<style>
+    .lista img {
+        height: 150px; /* altura desejada */
+        object-fit: cover; /* corta a imagem sem distorcer */
+        margin-top: 25px;
+        width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 
-</div>
-
-
-<div class="container"> 
-    <div class="row">
-
-    @foreach(var lanche in Model.Lanches)
-    {
-
-       <partial name="_LancheResumo" for="@lanche" />
     }
 
+    .categorias {
+        min-height: 60px; /* altura maior para dar destaque */
+        width: 100%;
+        border-radius: 15px;
+
+        background: #02AAB0; /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #00CDAC, #02AAB0); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #00CDAC, #02AAB0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+        .categorias h1 {
+            font-weight: 600;
+            font-size: 2rem;
+        }
+
+        .categorias h2 {
+            margin-top: 5px;
+            font-size: 1.2rem;
+        }
+</style>
+
+<div class="container my-5 mt-5">
+
+    <div class="lista d-block w-100">
+        <h1>
+            <img src="https://images.unsplash.com/photo-1630278156268-12d56c2e135f?q=80&w=1031&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Alternate Text" />
+        </h1>
     </div>
 
- </div>
+    <div class="categorias mb-4 mt-3">
+        <h1>⭐ Todas as Categorias a sua disposição.</h1>
+        <h2>@Model.CategoriaAtual</h2>
+    </div>
+    
+    <div>
+        <div class="row">
+
+            @foreach (var lanche in Model.Lanches)
+            {
+
+                <partial name="_LancheResumo" for="@lanche" />
+            }
+        </div>
+    </div>
+</div>
+
 

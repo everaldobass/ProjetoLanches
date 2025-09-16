@@ -20,3 +20,32 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+
+
+/* Navbar estilo vidro */
+.navbar-glass {
+    background: rgba(0, 0, 0, 0.6); /* Preto transparente */
+    backdrop-filter: blur(10px); /* Efeito de vidro */
+    -webkit-backdrop-filter: blur(10px); /* Safari */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+    .navbar-glass .navbar-brand,
+    .navbar-glass .nav-link {
+        color: #fff !important; /* Fonte branca */
+        font-weight: 500;
+        transition: color 0.3s ease;
+    }
+
+        .navbar-glass .nav-link:hover {
+            color: #f8d34c !important; /* Amarelo destaque no hover */
+        }
+
+    .navbar-glass .navbar-toggler {
+        border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .navbar-glass .navbar-toggler-icon {
+        filter: invert(1); /* Ícone branco */
+    }

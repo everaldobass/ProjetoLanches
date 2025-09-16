@@ -38,8 +38,6 @@ builder.Services.AddSession();
 
 
 
-
-
 //### Classe Program  Seql Server
 // String de Conexao com o banco de dados Sql Server
 //builder.Services.AddDbContext<DbContext>(options =>

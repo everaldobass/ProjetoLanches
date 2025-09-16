@@ -1,12 +1,13 @@
-﻿
-@model Lanche
+﻿@model Lanche
 
-<div class="col-sm-4 col-md-4 col-lg-4">
-      <h4>@Model.Nome</h4>
+<div class="mt-5">
+    <div class="col-sm-4 col-md-4 col-lg-4 mt-5">
+        <h4 class="mt-5">@Model.Nome</h4>
 
-       <p class="img-fluid"><img src="@Model.ImagemUrl"></p>
+        <p class="img-fluid"><img src="@Model.ImagemUrl"></p>
 
-       <h3> Preço: @Model.Preco.ToString("c")</h3>
-       <h4> @Model.Nome</h4>
-       <p>@Model.DescricaoCurta</p>
+        <h3> Preço: @Model.Preco.ToString("c")</h3>
+        <h4> @Model.Nome</h4>
+        <p>@Model.DescricaoCurta</p>
+    </div>
 </div>

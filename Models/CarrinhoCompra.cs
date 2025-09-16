@@ -100,7 +100,7 @@ namespace ProjetoLanches.Models
 
 
         // Metodo para Remover do Carrinho
-        public int RemoverDoCarrinho(Lanche lanche)
+        public int RemoverItemDoCarrinhoCompra(Lanche lanche)
         {
             // Busca no banco de dados se já existe um item no carrinho com o mesmo LancheId e CarrinhoCompraId
             var carrinhoCompraItem = _context.CarrinhoCompraItens.SingleOrDefault

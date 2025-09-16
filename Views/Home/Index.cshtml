@@ -1,8 +1,53 @@
-﻿@{
-    ViewData["Title"] = "Pagina Principal";
-}
+﻿@model HomeViewModel
 
-<div class="text-center">
-    
-    <partial name="_Caroucel"/>
+<style>
+    .preferidos {
+        min-height: 60px; /* altura maior para dar destaque */
+        width: 100%;
+        border-radius: 15px;
+
+        background: #0575E6; /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #021B79, #0575E6); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #021B79, #0575E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+        .preferidos h1 {
+            font-weight: 600;
+            font-size: 2rem;
+        }
+
+        .preferidos p {
+            margin-top: 5px;
+            font-size: 1.2rem;
+        }
+</style>
+
+<div class="container text-center">
+    <partial name="_Caroucel" />
+
+    <div class="preferidos mb-4 mt-3">
+        <h1>⭐ Os Preferidos da Semana</h1>
+        <p>Está com fome? Então confira os mais pedidos!</p>
+    </div>
+
+    <div>
+        <div class="row g-4">
+            @foreach (var lanche in Model.LanchesPreferidos)
+            {
+                <partial name="_LancheResumo" for="@lanche" />
+            }
+        </div>
+    </div>
 </div>
+
+
+

@@ -1,5 +1,6 @@
 ﻿using ProjetoLanches.Models;
 
+//
 namespace ProjetoLanches.ViewModels
 {
     public class LancheListViewModel

@@ -1,4 +1,4 @@
-using FluentAssertions.Common;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using ProjetoLanches.Context;
 using ProjetoLanches.Models;
@@ -21,6 +21,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 // Aula 32 - Injeção de dependência
 builder.Services.AddTransient<ILancheRepository, LancheRepository>();
 builder.Services.AddTransient<ICategoriaRepository, CategoriaRepository>();
+builder.Services.AddScoped<ICategoriaRepository, CategoriaRepository>();
+
+
 
 
 // Aula 45 - Inejeção de dependência para acessar o contexto HTTP - Enquanto o usuário navega no site
@@ -72,11 +75,30 @@ app.UseRouting();
 // Aula 45 - Utilizando o session
 app.UseSession();
 
-
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+// Aula 58 - Definindo as rotas
+
+// 60 - Múltiplas Rotas - Criando a rota para exibir lanches por categoria
+// Rotas personalizadas
+app.UseEndpoints(endpoints =>
+{
+    // Rota para exibir lanches por categoria
+    endpoints.MapControllerRoute(
+        name: "categoriaFiltro",
+        pattern: "Lanche/{action}/{categoria?}",
+        defaults: new { controller = "Lanche", action = "List" });
+
+    // Rota padrão
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
+});
+
+// Rota padrão
+//app.MapControllerRoute(
+//name: "default",
+// pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+

@@ -26,7 +26,20 @@ namespace ProjetoLanches.Components
         public IViewComponentResult Invoke()
         {
             // Obtém os itens atualmente no carrinho de compras
-            var itens = _carrinhoCompra.GetCarrinhoCompraItens();
+            //var itens = _carrinhoCompra.GetCarrinhoCompraItens();
+
+            //************************************************************************
+            var itens = new List<CarrinhoCompraItem>()
+            {
+                new CarrinhoCompraItem(),
+                new CarrinhoCompraItem(),
+                new CarrinhoCompraItem()
+            };
+
+
+            //************************************************************************
+
+
             // Atribui os itens obtidos à propriedade do carrinho de compras
             _carrinhoCompra.CarrinhoCompraItems = itens;
 

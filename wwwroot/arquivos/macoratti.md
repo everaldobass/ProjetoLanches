@@ -1133,13 +1133,218 @@ namespace ProjetoLanches.Components
 
 ### Aula 58 - Ajustando o LancheController para exibir lanches por categoria
 
+```
+namespace ProjetoLanches.Controllers
+{
+    public class LancheController : Controller
+    {
+        // Declara uma variável para acessar os dados dos lanches
+        private readonly ILancheRepository _lancheRepository;
+        // Construtor da classe, que recebe o repositório de lanches via injeção de dependência
+        public LancheController(ILancheRepository lancheRepository)
+        {   // Atribui o repositório de lanches à variável privada
+            _lancheRepository = lancheRepository;
+        }
 
-### Aula 59
 
-### Aula 60
+        // Método construtor
 
-### Melhorar a tela de Lista - (Index)
+        public IActionResult List(string categoria)
+        {
 
+            // Declara variáveis para armazenar a lista de lanches e a categoria atual
+            IEnumerable<Lanche> lanches;
+            string categoriaAtual = string.Empty;
+
+            // Verifica se a categoria foi fornecida
+            if (string.IsNullOrEmpty(categoria))
+            {
+                lanches = _lancheRepository.Lanches.OrderBy(l => l.LancheId);
+                categoriaAtual = "Todos os Lanches";
+            }
+            // Se a categoria for "Normal" ou "Natural"
+            else
+            {
+                // Filtra os lanches com base na categoria fornecida
+                if (string.Equals("Normal", categoria, StringComparison.OrdinalIgnoreCase))
+                {
+                    lanches = _lancheRepository.Lanches
+                        .Where(l => l.Categoria.CategoriaNome.Equals("Normal"))
+                        .OrderBy(l => l.Nome);
+                }
+                // Se a categoria for "Natural"
+                else
+                {
+                    lanches = _lancheRepository.Lanches
+                        .Where(l => l.Categoria.CategoriaNome.Equals("Natural"))
+                        .OrderBy(l => l.Nome);
+                }
+                // Define a categoria atual com base na categoria fornecida
+                categoriaAtual = categoria;
+
+            }
+            // Cria uma instância do ViewModel e popula suas propriedades
+            var lancheslistViewModel = new LancheListViewModel
+            {
+                Lanches = lanches,
+                CategoriaAtual = categoriaAtual,
+            };
+
+            // Retorna a view associada à ação List, passando o ViewModel como parâmetro
+            return View(lancheslistViewModel);
+
+        }
+
+    }
+}
+
+
+
+```
+
+### Aula 59 - Apresentando os conceitos sobre Roteamento
+### Aula 60 - Múltiplas Rotas - Criando a rota para exibir lanches por categoria
+```
+// 60 - Múltiplas Rotas - Criando a rota para exibir lanches por categoria
+app.UseEndpoints(endpoints =>
+{
+
+    // Rota para exibir lanches por categoria
+    endpoints.MapControllerRoute(
+        name: "categoriaFiltro",
+        pattern: "Lanche{action}/{categoria?}",
+        defaults: new { controller = "Lanche", action = "List" });
+
+    // Rota para o carrinho de compras
+    endpoints.MapControllerRoute(
+        name: "admin",
+        pattern: "admin/{action=Index}/{id?}",
+        defaults: new { controller = "Admin" });
+   
+});
+
+```
+### Aula 61 - Criar View Componente para exibir as categorias no menu Lanches
+```
+namespace ProjetoLanches.Controllers
+{
+    public class LancheController : Controller
+    {
+        // Declara uma variável para acessar os dados dos lanches
+        private readonly ILancheRepository _lancheRepository;
+        // Construtor da classe, que recebe o repositório de lanches via injeção de dependência
+        public LancheController(ILancheRepository lancheRepository)
+        {   // Atribui o repositório de lanches à variável privada
+            _lancheRepository = lancheRepository;
+        }
+
+
+        // Ação que exibe a lista de lanches, possivelmente filtrada por categoria
+        public IActionResult List(string categoria)
+        {
+            // Declara variáveis para armazenar a lista de lanches e a categoria atual
+            IEnumerable<Lanche> lanches;
+            string categoriaAtual = string.Empty;
+
+            // Verifica se a categoria foi fornecida
+            if (string.IsNullOrEmpty(categoria))
+            {
+                lanches = _lancheRepository.Lanches.OrderBy(l => l.LancheId);
+                categoriaAtual = "Todos os Lanches";
+            }
+            else
+            {
+                // Filtra os lanches com base na categoria fornecida
+                if (string.Equals("Normal", categoria, StringComparison.OrdinalIgnoreCase))
+                {
+                    lanches = _lancheRepository.Lanches
+                        .Where(l => l.Categoria.CategoriaNome.Equals("Normal"))
+                        .OrderBy(l => l.Nome);
+                }
+                else
+                {
+                    lanches = _lancheRepository.Lanches
+                        .Where(l => l.Categoria.CategoriaNome.Equals("Natural"))
+                        .OrderBy(l => l.Nome);
+                }
+
+                // Define a categoria atual com base na categoria fornecida
+                categoriaAtual = categoria;
+            }
+
+            // Cria uma instância do ViewModel e popula suas propriedades
+            var lancheslistViewModel = new LancheListViewModel
+            {
+                Lanches = lanches,
+                CategoriaAtual = categoriaAtual,
+            };
+
+            // Retorna a view associada à ação List, passando o ViewModel como parâmetro
+            return View(lancheslistViewModel);
+        }
+
+    }
+}
+
+
+```
+### Aula 62 - Otimizando o método Action List de LancheController
+
+```
+namespace ProjetoLanches.Controllers
+{
+    public class LancheController : Controller
+    {
+        // Declara uma variável para acessar os dados dos lanches
+        private readonly ILancheRepository _lancheRepository;
+        // Construtor da classe, que recebe o repositório de lanches via injeção de dependência
+        public LancheController(ILancheRepository lancheRepository)
+        {   // Atribui o repositório de lanches à variável privada
+            _lancheRepository = lancheRepository;
+        }
+
+
+        // Ação que exibe a lista de lanches, possivelmente filtrada por categoria
+        public IActionResult List(string categoria)
+        {
+            // Declara variáveis para armazenar a lista de lanches e a categoria atual
+            IEnumerable<Lanche> lanches;
+            string categoriaAtual = string.Empty;
+
+            // Verifica se a categoria foi fornecida
+            if (string.IsNullOrEmpty(categoria))
+            {
+                lanches = _lancheRepository.Lanches.OrderBy(l => l.LancheId);
+                categoriaAtual = "Todos os Lanches";
+            }
+            else
+            {
+             // Filtra os lanches com base na categoria fornecida
+                lanches = _lancheRepository.Lanches
+                     .Where(l => l.Categoria.CategoriaNome.Equals(categoria))
+                     .OrderBy(c => c);
+                
+
+                // Define a categoria atual com base na categoria fornecida
+                categoriaAtual = categoria;
+            }
+
+            // Cria uma instância do ViewModel e popula suas propriedades
+            var lancheslistViewModel = new LancheListViewModel
+            {
+                Lanches = lanches,
+                CategoriaAtual = categoriaAtual,
+            };
+
+            // Retorna a view associada à ação List, passando o ViewModel como parâmetro
+            return View(lancheslistViewModel);
+        }
+
+    }
+}
+
+```
+### Aula 63 - Incluindo um link e um button na exibição dos lanches
 ### Script datatable
 
 

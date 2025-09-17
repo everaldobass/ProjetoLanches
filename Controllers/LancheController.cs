@@ -1,33 +1,57 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProjetoLanches.Models;
 using ProjetoLanches.Repositories.Interfaces;
 using ProjetoLanches.ViewModels;
 
+// Define o namespace onde o controlador está localizado, organizando o código por funcionalidade
 namespace ProjetoLanches.Controllers
 {
+    // Controlador responsável por gerenciar as ações relacionadas aos lanches
     public class LancheController : Controller
     {
-        // Declara uma variável para acessar os dados dos lanches
+        // Injeção de dependência do repositório de lanches
         private readonly ILancheRepository _lancheRepository;
-        // Construtor da classe, que recebe o repositório de lanches via injeção de dependência
+
+
+        // Construtor que recebe o repositório de lanches via injeção de dependência
         public LancheController(ILancheRepository lancheRepository)
-        {   // Atribui o repositório de lanches à variável privada
+        {
             _lancheRepository = lancheRepository;
         }
 
-        // Método construtor
 
-        public IActionResult List()
+        // Ação que exibe a lista de lanches, possivelmente filtrada por categoria
+        public IActionResult List(string categoria)
         {
-            // Cria uma instância do ViewModel da lista de lanches, preenchendo suas propriedades
-            var lancheslistViewModel = new LancheListViewModel();
-            {   // Obtém a lista de lanches do repositório
-                lancheslistViewModel.Lanches = _lancheRepository.Lanches;
-                lancheslistViewModel.CategoriaAtual = "Categoria Atual";
+            IEnumerable<Lanche> lanches;
+            string categoriaAtual = "Todos os Lanches";
+
+            if (string.IsNullOrEmpty(categoria))
+            {
+                lanches = _lancheRepository.Lanches
+                                           .OrderBy(l => l.LancheId);
             }
-            // Retorna a view associada à ação List, passando o ViewModel como parâmetro
-            return View(lancheslistViewModel);
+            else
+            {
+                // Filtra os lanches pela categoria fornecida, ignorando maiúsculas e minúsculas
+                lanches = _lancheRepository.Lanches
+                                           .Where(l => l.Categoria != null &&
+                                                       l.Categoria.CategoriaNome.Equals(categoria, StringComparison.OrdinalIgnoreCase))
+                                           .OrderBy(l => l.Nome);
+
+                categoriaAtual = categoria;
+            }
+
+            // Cria o ViewModel com os dados necessários para a View
+            var viewModel = new LancheListViewModel
+            {
+                Lanches = lanches,
+                CategoriaAtual = categoriaAtual
+            };
 
 
+            // Retorna a View com o ViewModel
+            return View(viewModel);
         }
     }
 }

@@ -2,9 +2,12 @@
 
 <style>
     .preferidos {
-        min-height: 60px; /* altura maior para dar destaque */
+        height: 80px; /* altura desejada */
+        object-fit: cover; /* corta a imagem sem distorcer */
+        margin-top: 80px;
         width: 100%;
-        border-radius: 15px;
+        border-radius: 10px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 
         background: #0575E6; /* fallback for old browsers */
         background: -webkit-linear-gradient(to right, #021B79, #0575E6); /* Chrome 10-25, Safari 5.1-6 */
@@ -16,20 +19,28 @@
         align-items: center;
         color: #fff;
         text-align: center;
-        padding: 10px;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+       
+       
     }
 
         .preferidos h1 {
+            margin:0;
+            padding:0;
+            margin-top: 10px;
             font-weight: 600;
             font-size: 2rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         }
 
         .preferidos p {
             margin-top: 5px;
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
+
+
+ 
 </style>
+
 
 <div class="container text-center">
     <partial name="_Caroucel" />
@@ -40,7 +51,7 @@
     </div>
 
     <div>
-        <div class="row g-4">
+        <div class="row g-4 lanche">
             @foreach (var lanche in Model.LanchesPreferidos)
             {
                 <partial name="_LancheResumo" for="@lanche" />

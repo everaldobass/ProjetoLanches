@@ -1,13 +1,41 @@
 ﻿@model Lanche
 
-<div class="mt-5">
+<style>
+    .item-resumo {
+        margin: 0;
+        padding: 0;
+        color: #000;
+        font-size: 16px;
+        background:#c1c1c1;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    img{
+        margin-top: 10px;
+        border-radius:10px;
+    }
+</style>
+
+<div class="item-resumo mt-5">
     <div class="col-sm-4 col-md-4 col-lg-4 mt-5">
-        <h4 class="mt-5">@Model.Nome</h4>
-
+     
         <p class="img-fluid"><img src="@Model.ImagemUrl"></p>
-
         <h3> Preço: @Model.Preco.ToString("c")</h3>
-        <h4> @Model.Nome</h4>
+
+
+        <a asp-controller="Lanche" asp-action="Details" asp-route-lancheId="@Model.LancheId"> @Model.Nome</a>
         <p>@Model.DescricaoCurta</p>
+
+        <div>
+            <p class="button">
+                <a class="btn btn-primary" id="cartButton" asp-controller="CarrinhoCompra" 
+                asp-action="AdicionarAoCarrinho" asp-route-lancheId="@Model.LancheId">
+                    Adicionar ao Carrinho
+                </a>
+            </p>
+        </div>
+
+
+
     </div>
 </div>

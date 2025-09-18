@@ -3,6 +3,8 @@
 // Define o namespace onde está localizada a ViewModel da página inicial (home)
 namespace ProjetoLanches.ViewModels
 {
+
+
     // Classe que representa os dados que serão enviados da controller para a view inicial (home)
     public class HomeViewModel
     {
@@ -10,4 +12,6 @@ namespace ProjetoLanches.ViewModels
         public IEnumerable<Lanche> LanchesPreferidos { get; set; }
 
      }
+
+
 }

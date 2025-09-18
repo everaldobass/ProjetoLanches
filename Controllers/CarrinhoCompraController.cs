@@ -50,7 +50,7 @@ namespace ProjetoLanches.Controllers
 
 
         // Método que adiciona um lanche ao carrinho de compras
-        public RedirectToActionResult AdicionarItemNoCarrinhoCompra(int lancheId)
+        public IActionResult AdicionarItemNoCarrinhoCompra(int lancheId)
         {
             // Busca o lanche pelo ID fornecido
             var lancheSelecionado = _lancheRepository.Lanches.FirstOrDefault(p => p.LancheId == lancheId);
@@ -63,23 +63,26 @@ namespace ProjetoLanches.Controllers
             return RedirectToAction("Index");
 
         }
+
 
 
 
         // Método que adiciona um lanche ao carrinho de compras
-        public RedirectToActionResult RemoverItemDoCarrinhoCompra(int lancheId)
+        public IActionResult RemoverItemDoCarrinhoCompra(int lancheId)
         {
             // Busca o lanche pelo ID fornecido
             var lancheSelecionado = _lancheRepository.Lanches.FirstOrDefault(p => p.LancheId == lancheId);
             // Se o lanche for encontrado, adiciona-o ao carrinho de compras
             if (lancheSelecionado != null)
             {
-                _carrinhoCompra.AdicionarAoCarrinho(lancheSelecionado);
+                _carrinhoCompra.RemoverDoCarrinho(lancheSelecionado);
             }
             // Redireciona para a ação Index do controller atual
             return RedirectToAction("Index");
 
         }
+
+
 
     }
 }

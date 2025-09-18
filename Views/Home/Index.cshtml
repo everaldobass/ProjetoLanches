@@ -1,33 +1,28 @@
 ﻿@model HomeViewModel
+<!--Apenas o BANNER AZUL DA PRINCIPAL -->
 
 <style>
     .preferidos {
         height: 80px; /* altura desejada */
         object-fit: cover; /* corta a imagem sem distorcer */
         margin-top: 80px;
-        width: 100%;
-        border-radius: 10px;
         box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-
-        background: #0575E6; /* fallback for old browsers */
-        background: -webkit-linear-gradient(to right, #021B79, #0575E6); /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to right, #021B79, #0575E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         color: #fff;
-        text-align: center;
-       
-       
-    }
 
+        text-align: center;
+
+        background: #FF0099; /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #493240, #FF0099); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #493240, #FF0099); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    }
         .preferidos h1 {
             margin:0;
             padding:0;
             margin-top: 10px;
-            font-weight: 600;
             font-size: 2rem;
             box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         }
@@ -37,12 +32,14 @@
             font-size: 1rem;
         }
 
-
  
 </style>
 
 
-<div class="container text-center">
+
+<div class="container w-100 text-center">
+
+    <!--Chama o partial Carroucel -->
     <partial name="_Caroucel" />
 
     <div class="preferidos mb-4 mt-3">
@@ -51,9 +48,11 @@
     </div>
 
     <div>
-        <div class="row g-4 lanche">
+
+        <div class="row lanche">
             @foreach (var lanche in Model.LanchesPreferidos)
             {
+                <!--Chama o partial lanche resumo -->
                 <partial name="_LancheResumo" for="@lanche" />
             }
         </div>

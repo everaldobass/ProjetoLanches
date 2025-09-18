@@ -3,14 +3,22 @@
     .carousel-item img {
         height: 300px; /* altura desejada */
         object-fit: cover; /* corta a imagem sem distorcer */
+        width:100%;
+        margin: auto;
+        margin-top:35px;
     }
+
+    .carousel-main{
+        margin: 0;
+        padding: 0;
+        
+
+    }
+
 </style>
 
-<div class="mt-5">
-    <br />
-
-
-
+<div class="container w-100 mt-5 carousel-main">
+ 
     <div id="carouselLanches" class="carousel slide shadow-lg rounded-3 overflow-hidden " data-bs-ride="carousel">
         <!-- Indicadores -->
         <div class="carousel-indicators">
@@ -24,7 +32,7 @@
         <div class="carousel-inner">
             <div class="carousel-item active" data-bs-interval="5000">
                 <img src="https://images.unsplash.com/photo-1610970878459-a0e464d7592b?q=80&w=924&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                     class="d-block w-100" alt="Hambúrguer delicioso">
+                     class="d-block " alt="Hambúrguer delicioso">
                 <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-2 p-2">
                     <h5>Hambúrguer Artesanal</h5>
                     <p>Suculento e cheio de sabor!</p>
@@ -33,7 +41,7 @@
 
             <div class="carousel-item" data-bs-interval="5000">
                 <img src="https://images.unsplash.com/photo-1568782947821-3d660dacc7cb?q=80&w=876&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                     class="d-block w-100" alt="Batata frita crocante">
+                     class="d-block " alt="Batata frita crocante">
                 <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-2 p-2">
                     <h5>Batata Crocante</h5>
                     <p>Acompanhamento perfeito para seu lanche.</p>
@@ -42,7 +50,7 @@
 
             <div class="carousel-item">
                 <img src="https://plus.unsplash.com/premium_photo-1695055513501-2573541f00cd?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                     class="d-block w-100" alt="Refrigerante gelado">
+                     class="d-block" alt="Refrigerante gelado">
                 <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-2 p-2">
                     <h5>Refresco Gelado</h5>
                     <p>Para completar sua refeição com estilo.</p>

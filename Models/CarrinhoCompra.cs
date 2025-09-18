@@ -33,6 +33,7 @@ namespace ProjetoLanches.Models
         // Método estático que obtém ou cria um carrinho de compras vinculado à sessão do usuário
         public static CarrinhoCompra GetCarrinho(IServiceProvider services)
         {
+
             // Obtém a sessão HTTP atual do usuário
             ISession session =
                 services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
@@ -100,8 +101,9 @@ namespace ProjetoLanches.Models
 
 
         // Metodo para Remover do Carrinho
-        public int RemoverItemDoCarrinhoCompra(Lanche lanche)
+        public int RemoverDoCarrinho(Lanche lanche)
         {
+
             // Busca no banco de dados se já existe um item no carrinho com o mesmo LancheId e CarrinhoCompraId
             var carrinhoCompraItem = _context.CarrinhoCompraItens.SingleOrDefault
                 (
@@ -187,9 +189,6 @@ namespace ProjetoLanches.Models
             // Retorna o valor total do carrinho
             return valorToral;
         }
-
-
-
 
     }
 

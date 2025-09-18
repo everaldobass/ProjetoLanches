@@ -22,23 +22,14 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddTransient<ILancheRepository, LancheRepository>();
 builder.Services.AddTransient<ICategoriaRepository, CategoriaRepository>();
 builder.Services.AddScoped<ICategoriaRepository, CategoriaRepository>();
-
-
-
-
 // Aula 45 - Inejeção de dependência para acessar o contexto HTTP - Enquanto o usuário navega no site
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
 // Aula 50
 builder.Services.AddScoped(sp => CarrinhoCompra.GetCarrinho(sp));
-
-
 
 // Aula 45 - Session e Carrinho de Compras
 builder.Services.AddMemoryCache();
 builder.Services.AddSession();
-
-
 
 
 //### Classe Program  Seql Server

@@ -2,6 +2,7 @@
 using ProjetoLanches.Repositories.Interfaces;
 using ProjetoLanches.Models;
 
+
 // Define o namespace onde o componente está localizado, organizando o código por funcionalidade
 namespace ProjetoLanches.Components
 {
@@ -19,8 +20,6 @@ namespace ProjetoLanches.Components
         }
 
 
-
-
         // Método que é chamado para renderizar o componente
         public IViewComponentResult Invoke()
         {
@@ -31,5 +30,6 @@ namespace ProjetoLanches.Components
             // Retorna a visualização do componente com a lista de categorias
             return View(categorias);
         }
+
     }
 }

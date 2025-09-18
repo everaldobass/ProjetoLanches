@@ -6,36 +6,53 @@
         padding: 0;
         color: #000;
         font-size: 16px;
-        background:#c1c1c1;
+    
         box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        
     }
 
     img{
-        margin-top: 10px;
+        margin-left: 20px;
         border-radius:10px;
+    }
+
+    .conteudo{
+        margin-left: 20px
+    }
+
+    .paragrafo{
+        font-size: 20px;
+        text-decoration: none;
     }
 </style>
 
-<div class="item-resumo mt-5">
-    <div class="col-sm-4 col-md-4 col-lg-4 mt-5">
+<div class="container w-100 item-resumo mt-4">
+
+    <div class="col-sm-4 col-md-4 col-lg-4 mt-3 conteudo">
      
         <p class="img-fluid"><img src="@Model.ImagemUrl"></p>
         <h3> Preço: @Model.Preco.ToString("c")</h3>
 
+        <h3 classe="paragrafo">
+        <a asp-controller="Lanche" asp-action="Details"
+        asp-route-lancheId="@Model.LancheId"> @Model.Nome</a>
+        </h3>
 
-        <a asp-controller="Lanche" asp-action="Details" asp-route-lancheId="@Model.LancheId"> @Model.Nome</a>
         <p>@Model.DescricaoCurta</p>
-
         <div>
             <p class="button">
-                <a class="btn btn-primary" id="cartButton" asp-controller="CarrinhoCompra" 
-                asp-action="AdicionarAoCarrinho" asp-route-lancheId="@Model.LancheId">
+                <a class="btn btn-primary" id="cartButton" asp-controller="CarrinhoCompra"
+                   asp-action="AdicionarItemNoCarrinhoCompra" asp-route-lancheId="@Model.LancheId">
                     Adicionar ao Carrinho
                 </a>
             </p>
         </div>
-
-
 
     </div>
 </div>

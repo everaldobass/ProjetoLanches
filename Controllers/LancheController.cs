@@ -24,34 +24,58 @@ namespace ProjetoLanches.Controllers
         public IActionResult List(string categoria)
         {
             IEnumerable<Lanche> lanches;
-            string categoriaAtual = "Todos os Lanches";
+            string categoriaAtual = string.Empty;
 
             if (string.IsNullOrEmpty(categoria))
             {
-                lanches = _lancheRepository.Lanches
-                                           .OrderBy(l => l.LancheId);
+                lanches = _lancheRepository.Lanches.OrderBy(l => l.LancheId);
+                categoriaAtual = "Todos os lanches";
             }
+
             else
             {
-                // Filtra os lanches pela categoria fornecida, ignorando maiúsculas e minúsculas
-                lanches = _lancheRepository.Lanches
-                                           .Where(l => l.Categoria != null &&
-                                                       l.Categoria.CategoriaNome.Equals(categoria, StringComparison.OrdinalIgnoreCase))
-                                           .OrderBy(l => l.Nome);
+              if(string.Equals("Normal", categoria, StringComparison.OrdinalIgnoreCase))
+                {
+                    lanches = _lancheRepository.Lanches.Where(l => l.Categoria.CategoriaNome.Equals("Normal"))
+                    .OrderBy(l => l.Nome);
+                }
+                else
+                {
+                    lanches = _lancheRepository.Lanches.Where(l => l.Categoria.CategoriaNome.Equals("Natural"))
+                        .OrderBy(l => l.Nome);
+                }
 
+                
                 categoriaAtual = categoria;
             }
 
             // Cria o ViewModel com os dados necessários para a View
-            var viewModel = new LancheListViewModel
+            var lancheListViewModel = new LancheListViewModel
             {
                 Lanches = lanches,
                 CategoriaAtual = categoriaAtual
             };
 
-
             // Retorna a View com o ViewModel
-            return View(viewModel);
+            return View(lancheListViewModel);
         }
+
+
+
+
+        public IActionResult Details(int lancheId)
+        {
+            var lanche = _lancheRepository.Lanches
+               .FirstOrDefault(l => l.LancheId == lancheId);
+            if (lanche == null)
+            {
+                return NotFound();
+            }
+
+
+            return View(lanche);
+        }
+
+
     }
 }

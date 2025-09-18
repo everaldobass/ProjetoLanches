@@ -1,0 +1,100 @@
+﻿@model Lanche
+
+<style>
+    .resumo img {
+        margin:0;
+        padding:0;
+        margin-top:35px;
+        height: 80px; /* altura desejada */
+        object-fit: cover; /* corta a imagem sem distorcer */
+        margin-top: 80px;
+        width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+
+    }
+
+    .card-resumo{
+        margin-top: 20px;
+       
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .card-detail{
+        padding: 10px;
+        margin: 5px;
+        margin-left:10px;
+    }
+
+
+    .detalhes{
+        min-height: 60px; /* altura maior para dar destaque */
+        width: 100%;
+     
+
+        background: #FC5C7D; /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #6A82FB, #FC5C7D); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #6A82FB, #FC5C7D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        text-align: center;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+</style>
+
+
+<div class="container w-100 ">
+
+    <div class="resumo d-block w-100">
+        <img src="https://plus.unsplash.com/premium_photo-1675252371648-7a6481df8226?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Alternate Text" />
+    </div>
+
+    <div class="detalhes mb-4 mt-3 w-100">
+        <h1>⭐ Tenha todos os detalhes a sua disposição.</h1>
+        <p>@Model.DescricaoDetalhada</p>
+    </div>
+
+
+    <div class="row card-resumo">
+
+        <div class="card card-detail mt-3" style="width: 18rem;">
+            <img src="@Model.ImagemUrl" class="card-img-top" alt="...">
+
+            <div class="card-block">
+
+                <h2 class="card-title">@Model.Nome</h2>
+                <p class="card-text">@Model.DescricaoDetalhada.</p>
+
+                <p class="btn btn-group align-content-lg-end">
+
+                    <a asp-controller="Lanche" asp-action="List" class="btn btn-outline-info">Ver todos os lanches</a>
+
+                    <a class="btn btn-primary" asp-controller="CarrinhoCompra"
+                       asp-action="AdicionarItemNoCarrinhoCompra"
+                    asp-route-lancheId="@Model.LancheId">
+                    Adicionar @Model.Nome ao carrinho.
+                </a>
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+

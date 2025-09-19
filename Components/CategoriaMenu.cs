@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProjetoLanches.Repositories.Interfaces;
-using ProjetoLanches.Models;
+
 
 
 // Define o namespace onde o componente está localizado, organizando o código por funcionalidade
@@ -11,6 +11,7 @@ namespace ProjetoLanches.Components
     {
         // Repositório de categorias para acessar os dados
         private readonly ICategoriaRepository _categoriaRepository;
+
 
         // Construtor que injeta o repositório de categorias
         public CategoriaMenu(ICategoriaRepository categoriaRepository)
@@ -24,9 +25,7 @@ namespace ProjetoLanches.Components
         public IViewComponentResult Invoke()
         {
             // Obtém a lista de categorias ordenadas por nome
-            var categorias = _categoriaRepository.Categorias?
-                .OrderBy(c => c.CategoriaNome) ?? Enumerable.Empty<Categoria>();
-
+            var categorias = _categoriaRepository.Categorias.OrderBy(c => c.CategoriaNome);
             // Retorna a visualização do componente com a lista de categorias
             return View(categorias);
         }

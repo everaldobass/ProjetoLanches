@@ -1,7 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using ProjetoLanches.Models;
-using ProjetoLanches.Repositories;
 using ProjetoLanches.Repositories.Interfaces;
 
 namespace ProjetoLanches.Controllers
@@ -21,6 +20,7 @@ namespace ProjetoLanches.Controllers
         }
 
 
+
         // Método que retorna a view principal da aplicação
         public IActionResult Index()
         {
@@ -34,6 +34,9 @@ namespace ProjetoLanches.Controllers
             return View(homeViewModel);
             //return View();
         }
+
+
+
 
         // Método que retorna a view de contato
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

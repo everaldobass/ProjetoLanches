@@ -1,36 +1,21 @@
-﻿@model IEnumerable<ProjetoLanches.Models.Categoria>
-
-<div class="dropdown">
-    <a class="btn btn-secondary dropdown-toggle"
-       href="#"
-       id="categoriaDropdown"
-       role="button"
-       data-bs-toggle="dropdown"
-       aria-expanded="false">
-        Categorias de Lanches
+﻿<div class="dropdown">
+ 
+    <a class="btn btn-secondary dropdown-toggle" id="dropdownMenuLink" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Lanches
     </a>
 
-    <ul class="dropdown-menu" aria-labelledby="categoriaDropdown">
-        @if (!Model?.Any() ?? true)
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        @foreach (var categoria in Model)
         {
-            <li class="px-3">Nenhuma categoria</li>
-        }
-        else
-        {
-            @foreach (var categoria in Model)
-            {
-                <li>
-                    <a class="dropdown-item"
-                       asp-controller="Lanche"
-                       asp-action="List"
-                       asp-route-categoria="@categoria.CategoriaNome">
-                        @categoria.CategoriaNome
-                    </a>
-                </li>
-            }
+            <li>
+                <a class="dropdown-item" asp-controller="Lanche" asp-action="List"
+                   asp-route-categoria="@categoria.CategoriaNome">
+                    @categoria.CategoriaNome
+                </a>
+            </li>
         }
 
-        <li><hr class="dropdown-divider" /></li>
+        <li><hr class="dropdown-divider"></li>
         <li>
             <a class="dropdown-item" asp-controller="Lanche" asp-action="List" asp-route-categoria="">
                 Todos os Lanches
@@ -38,4 +23,6 @@
         </li>
     </ul>
 </div>
+
+
 

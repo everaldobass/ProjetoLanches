@@ -78,7 +78,7 @@ app.UseEndpoints(endpoints =>
     endpoints.MapControllerRoute(
         name: "categoriaFiltro",
         pattern: "Lanche/{action}/{categoria?}",
-        defaults: new { controller = "Lanche", action = "List" });
+        defaults: new { Controller = "Lanche", action = "List" });
 
     // Rota padrão
     endpoints.MapControllerRoute(

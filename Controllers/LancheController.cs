@@ -9,6 +9,8 @@ namespace ProjetoLanches.Controllers
     // Controlador responsável por gerenciar as ações relacionadas aos lanches
     public class LancheController : Controller
     {
+
+
         // Injeção de dependência do repositório de lanches
         private readonly ILancheRepository _lancheRepository;
 
@@ -23,6 +25,7 @@ namespace ProjetoLanches.Controllers
         // Ação que exibe a lista de lanches, possivelmente filtrada por categoria
         public IActionResult List(string categoria)
         {
+
             IEnumerable<Lanche> lanches;
             string categoriaAtual = string.Empty;
 
@@ -34,18 +37,11 @@ namespace ProjetoLanches.Controllers
 
             else
             {
-              if(string.Equals("Normal", categoria, StringComparison.OrdinalIgnoreCase))
-                {
-                    lanches = _lancheRepository.Lanches.Where(l => l.Categoria.CategoriaNome.Equals("Normal"))
-                    .OrderBy(l => l.Nome);
-                }
-                else
-                {
-                    lanches = _lancheRepository.Lanches.Where(l => l.Categoria.CategoriaNome.Equals("Natural"))
-                        .OrderBy(l => l.Nome);
-                }
 
-                
+                lanches = _lancheRepository.Lanches
+                .Where(l => l.Categoria.CategoriaNome.Equals(categoria))
+                .OrderBy(l => l.Nome);
+
                 categoriaAtual = categoria;
             }
 
@@ -63,6 +59,7 @@ namespace ProjetoLanches.Controllers
 
 
 
+        // Ação que exibe os detalhes de um lanche específico
         public IActionResult Details(int lancheId)
         {
             var lanche = _lancheRepository.Lanches
@@ -71,7 +68,6 @@ namespace ProjetoLanches.Controllers
             {
                 return NotFound();
             }
-
 
             return View(lanche);
         }

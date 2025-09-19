@@ -27,11 +27,16 @@ namespace ProjetoLanches.Repositories
         public IEnumerable<Lanche> Lanches =>
             _context.Lanches.Include(c => c.Categoria); // Usa Include para carregar os dados da categoria junto com o lanche
 
+
+
         // Propriedade que retorna apenas os lanches marcados como preferidos, incluindo suas categorias
         public IEnumerable<Lanche> LanchesPreferidos =>
             _context.Lanches
                 .Where(l => l.IsLanchePreferido) // Filtra os lanches preferidos
                 .Include(c => c.Categoria);      // Inclui os dados da categoria
+
+
+
 
         // Método que retorna um lanche específico com base no seu ID
         public Lanche GetLancheById(int LancheId)
